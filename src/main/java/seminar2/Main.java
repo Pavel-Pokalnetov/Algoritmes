@@ -1,5 +1,7 @@
 package seminar2;
 
+import lib.RandomArrayGenerator;
+
 import java.util.Arrays;
 
 public class Main {

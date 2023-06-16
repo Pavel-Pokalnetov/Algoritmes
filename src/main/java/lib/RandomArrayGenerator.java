@@ -1,4 +1,4 @@
-package seminar2;
+package lib;
 
 import java.util.Random;
 
