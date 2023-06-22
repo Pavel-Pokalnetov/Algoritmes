@@ -1,6 +1,7 @@
 package seminar4;
 
 public class LeftRedBlackTree<T extends Comparable<T>> {
+    
     // При написании руководствовался статьями
     // https://habr.com/ru/articles/555404/
     // https://habr.com/ru/articles/557328/
@@ -29,7 +30,7 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
 
     // Метод для добавления нового узла в дерево
     public void add(T value) {
-        System.out.println("add "+value);
+//        System.out.println("add "+value); // для наглядности при отладке
         root = addNode(root, value);  // Добавляем новый узел, начиная от корня
         root.color = Color.BLACK;     // Корень всегда черный
     }
@@ -57,13 +58,15 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
         2. если левая нода красная и левая нода левой ноды красная - правосторонний поворот
         3. если левая нода красная и правосторонняя нода красная - делаем свап цвета.
         */
+        // 1
         if (isRed(node.right) && !isRed(node.left)) {
-            //node.right = rotateRight(node.right);
             node = rotateLeft(node);
         }
+        // 2
         if (isRed(node.left) && isRed(node.left.left)) {
             node = rotateRight(node);
         }
+        // 3
         if (isRed(node.left) && isRed(node.right)) {
             flipColors(node);
         }
@@ -112,10 +115,10 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
     public void printTree() {
 //        System.out.print("\n");
         printTree(root, "", false, 'r');
-        System.out.println("===================");
+        System.out.println("\n");
     }
 
-    // Рекурсивный метод для вывода на печать иерархической структуры дерева
+    // Рекурсивный служебный метод для вывода на печать иерархической структуры дерева
     private void printTree(Node node, String prefix, boolean isLeft, Character key) {
         if (node == null) {
             return;
